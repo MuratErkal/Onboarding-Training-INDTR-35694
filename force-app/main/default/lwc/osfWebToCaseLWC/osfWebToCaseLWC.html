@@ -1,0 +1,61 @@
+<template>
+        <template if:true={isLoading}>
+            <template if:false={error}>
+                <lightning-spinner alternative-text="Loading" size="x-small"></lightning-spinner>
+            </template>
+        </template>
+        <template if:false={isLoading}>
+            <template if:true={error}>
+                <p class="slds-text-color_error">{error}</p>
+            </template>
+            <template if:false={cases.length}>
+                <h1 class="slds-var-m-bottom_small">Please complete the form for {brandName}</h1>
+                <template if:true={inputFields.length}>
+                    <template for:each={inputFields} for:item="field">
+                        <lightning-input type={field.Type__c} 
+                            label={field.Label__c} 
+                            name={field.Name__c} 
+                            value={field.Default_Value__c} 
+                            placeholder={field.Placeholder__c} 
+                            maxlength={field.Max_Length__c}
+                            minlength={field.Min_Length__c} 
+                            onchange={handleInputChange}
+                            key={field.Index__c}
+                            required></lightning-input>
+                    </template>
+                </template>
+                <template if:true={textareaFields.length}>
+                    <template for:each={textareaFields} for:item="field">
+                        <lightning-textarea label={field.Label__c} 
+                                name={field.Name__c} 
+                                value={fieldValues.Description} 
+                                placeholder={field.Placeholder__c} 
+                                onchange={handleInputChange} 
+                                key={field.Index__c}
+                                required></lightning-textarea>
+                    </template>
+                </template>
+                <lightning-button label="Submit" onclick={handleCaseSubmit}></lightning-button>
+            </template>
+        </template>
+        
+        <template if:false={isLoading}>
+            <template if:true={cases.length}>
+                <lightning-button class="slds-var-m-left_x-small slds-var-m-bottom_medium" label="Back to Form" onclick={handleBackToForm}></lightning-button>
+                <h1 class="slds-var-m-around_x-small">Your open cases</h1>
+                <div class="slds-grid slds-wrap">
+                    <template for:each={cases} for:item="c">
+                        <div class="slds-col slds-size_1-of-4 slds-var-m-around_x-small" key={c.Id}>
+                            <lightning-card title={c.Subject}>
+                                <div class="slds-var-m-left_small slds-var-m-right_x-small">
+                                    <lightning-badge label={c.Status} class="slds-badge_inverse slds-var-m-bottom_x-small"></lightning-badge>
+                                    <p>{c.Description}</p>
+                                </div>
+                            </lightning-card>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </template>
+        
+</template>

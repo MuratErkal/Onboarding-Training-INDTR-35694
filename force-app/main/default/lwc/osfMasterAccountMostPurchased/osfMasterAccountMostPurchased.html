@@ -1,0 +1,19 @@
+<template>
+    <lightning-combobox
+    class="slds-m-bottom_medium"
+    name="amount"
+    label="Status"
+    value={limitNum}
+    placeholder="Amount of products displayed"
+    options={options}
+    onchange={handleChange}></lightning-combobox>
+    <div style="height: 300px;">
+        <template if:true={tableData}>
+            <lightning-datatable
+                    key-field="id"
+                    data={tableData}
+                    columns={columns}>
+            </lightning-datatable>
+        </template>
+    </div>
+</template>
