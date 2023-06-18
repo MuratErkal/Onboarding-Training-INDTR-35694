@@ -1,6 +1,9 @@
 @isTest
 private class OSF_ContractTriggerTest {
 
+    private static final String ASSERT_ERROR_STRING = 'Expected update to succeed.';
+    private static final String ASSERT_MASTER_ACCOUNT_ERROR_STRING = 'Expected master account field to be updated.';
+
     private static void init(String actionToInit) {
         switch on actionToInit {
             when 'testContractUpdate', 'testContractDelete' {
@@ -36,9 +39,9 @@ private class OSF_ContractTriggerTest {
 
         List<Order> orderAnyNew = [SELECT Id, AccountId, ContractId, Status, Master_Account__c FROM Order WHERE Id = :orderAny[0].Id];
 
-        System.assert(result[0].isSuccess(), 'Expected update to succeed.');
-        System.assert(result[0].getErrors().size() == 0, 'Expected update to succeed.');
-        System.assertEquals(masterAccount[0].Id, orderAnyNew[0].Master_Account__c, 'Expected master account field to be updated.');
+        System.assert(result[0].isSuccess(), ASSERT_ERROR_STRING);
+        System.assert(result[0].getErrors().size() == 0, ASSERT_ERROR_STRING);
+        System.assertEquals(masterAccount[0].Id, orderAnyNew[0].Master_Account__c, ASSERT_MASTER_ACCOUNT_ERROR_STRING);
     }
 
     @isTest static void testContractDelete() {
@@ -52,7 +55,7 @@ private class OSF_ContractTriggerTest {
         undelete contractAny;
         Test.stopTest();
 
-        System.assert(result[0].isSuccess(), 'Expected update to succeed.');
-        System.assert(result[0].getErrors().size() == 0, 'Expected update to succeed.');
+        System.assert(result[0].isSuccess(), ASSERT_ERROR_STRING);
+        System.assert(result[0].getErrors().size() == 0, ASSERT_ERROR_STRING);
     }
 }

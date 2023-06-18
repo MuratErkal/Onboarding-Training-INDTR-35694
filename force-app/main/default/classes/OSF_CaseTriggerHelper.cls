@@ -84,7 +84,7 @@ public without sharing class OSF_CaseTriggerHelper {
                 if (res.getStatusCode() == 200) {
                     DetectLanguageWrapper result = DetectLanguageWrapper.parse(res.getBody());
                     String resultLang = result.data.detections[0]?.language;
-                    lang = resultLang == 'en' ? ENGLISH_STRING : GERMAN_STRING;
+                    lang = resultLang == 'de' ? GERMAN_STRING : ENGLISH_STRING;
                 }
             }
             c.Language__c = lang;
