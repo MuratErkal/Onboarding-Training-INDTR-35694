@@ -1,18 +1,65 @@
-# Salesforce DX Project: Next Steps
+# Lightning Flows Module:
+## Task 1
+### Flows:
+- Update Address and Weather Data
+### Classes:
+- OSF_WeatherUnitConverter
+- CelsusToFah
+## Task 2
+### Flows:
+- Send auto responses to cases
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+# LWC Module:
+## Task 1
+### Custom Metadata Types:
+- OSF WtC Form
+- OSF WtC Form Field
+### LWC:
+- osfWebToCaseLWC
+### Classes:
+- OSF_WebToCaseLWCPicklist
+- OSF_WebToCaseLWCPicklistTest
+- OSF_WebToCaseLWC
+- OSF_WebToCaseLWCTest
+- OSF_CaseTriggerHandler -> .beforeInsert
+- OSF_CaseTriggerHelper -> .createPersonAccountsFromCases
+### Triggers:
+- OSF_CaseTrigger
+## Task 2
+### LWC:
+- osfPersonAccountKPI
+- osfPersonAccountKPICell
+### Classes:
+- OSF_PersonAccountKPI
+- OSF_PersonAccountKPITest
 
-## How Do You Plan to Deploy Your Changes?
-
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
-
-## Configure Your Salesforce DX Project
-
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
-
-## Read All About It
-
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+# Apex Module:
+## Task 1
+### LWC:
+- osfMasterAccountMostPurchased
+### Classes:
+- OSF_GetMasterAccountMostPurchased
+- OSF_GetMasterAccountMostPurchasedTest
+- OSF_PersonAccountTriggerHandler
+- OSF_PersonAccountTriggerHelper
+- OSF_PersonAccountTriggerTest
+- OSF_OrderTriggerHandler
+- OSF_OrderTriggerHelper
+- OSF_OrderTriggerHelperTest
+### Triggers:
+- OSF_PersonAccountTrigger
+- OSF_OrderTrigger
+- OSF_ContractTrigger
+## Task 2
+### Classes:
+- OSF_CaseTriggerHandler -> .beforeUpdate
+- OSF_CaseTriggerHelper -> .getOrdersToUpdateMap & .updateOrders
+## Task 3
+### Classes:
+- OSF_CaseTriggerHandler -> .afterInsert
+- OSF_CaseTriggerHelper -> .getEmailCasesToUpdateLang & .updateEmailCasesLang
+- DetectLanguageWrapper
+## Task 4
+### Classes:
+- OSF_WeatherUnitConverter
+- CelsusToFah
