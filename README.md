@@ -2,12 +2,9 @@
 ## Task 1
 ### Flows:
 - Update Address and Weather Data
-### Classes:
-- OSF_WeatherUnitConverter
-- CelsusToFah
 ## Task 2
 ### Flows:
-- Send auto responses to cases
+- Send Auto Responses to Cases
 
 # LWC Module:
 ## Task 1
@@ -62,4 +59,4 @@
 ## Task 4
 ### Classes:
 - OSF_WeatherUnitConverter
-- CelsusToFah
+- CelsiusToFah
