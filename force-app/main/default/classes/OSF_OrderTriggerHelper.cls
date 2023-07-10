@@ -1,4 +1,4 @@
-public without sharing class OSF_OrderTriggerHelper {
+public with sharing class OSF_OrderTriggerHelper {
     public OSF_OrderTriggerHelper() {
         System.debug('Inside AccountTriggerHelper Constructor');
     }

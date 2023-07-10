@@ -1,4 +1,4 @@
-public without sharing class OSF_PersonAccountTriggerHelper {
+public with sharing class OSF_PersonAccountTriggerHelper {
     private static final String EXISTING_ACCOUNT_ERROR_STRING = 'Email is in use with the same brand, please use another email or brand.';
     private static final String BRAND_REQUIRED_ERROR_STRING = 'Brand is required.';
     private static final String EMAIL_REQUIRED_ERROR_STRING = 'Email is required.';

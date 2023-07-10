@@ -1,4 +1,4 @@
-public without sharing class OSF_PersonAccountTriggerHandler implements OSF_TriggerHandler {
+public with sharing class OSF_PersonAccountTriggerHandler implements OSF_TriggerHandler {
     private static final String EXISTING_ACCOUNT_ERROR_STRING = 'Email is in use with the same brand, please use another email or brand.';
 
     public OSF_PersonAccountTriggerHelper helper;

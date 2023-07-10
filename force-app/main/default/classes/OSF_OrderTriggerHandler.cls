@@ -1,4 +1,4 @@
-public without sharing class OSF_OrderTriggerHandler implements OSF_TriggerHandler {
+public with sharing class OSF_OrderTriggerHandler implements OSF_TriggerHandler {
     public OSF_OrderTriggerHelper helper;
 
     public OSF_OrderTriggerHandler() {
