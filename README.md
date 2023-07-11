@@ -35,6 +35,7 @@
 ### LWC:
 - osfMasterAccountMostPurchased
 ### Classes:
+- OSF_ContractTriggerTest
 - OSF_GetMasterAccountMostPurchased
 - OSF_GetMasterAccountMostPurchasedTest
 - OSF_PersonAccountTriggerHandler
@@ -42,7 +43,7 @@
 - OSF_PersonAccountTriggerTest
 - OSF_OrderTriggerHandler
 - OSF_OrderTriggerHelper
-- OSF_OrderTriggerHelperTest
+- OSF_OrderTriggerTest
 ### Triggers:
 - OSF_PersonAccountTrigger
 - OSF_OrderTrigger
@@ -51,6 +52,8 @@
 ### Classes:
 - OSF_CaseTriggerHandler -> .beforeUpdate
 - OSF_CaseTriggerHelper -> .getOrdersToUpdateMap & .updateOrders
+### Triggers:
+- OSF_CaseTrigger
 ## Task 3
 ### Classes:
 - OSF_CaseTriggerHandler -> .afterInsert

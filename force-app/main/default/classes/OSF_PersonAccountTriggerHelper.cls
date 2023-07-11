@@ -1,4 +1,4 @@
-public without sharing class OSF_PersonAccountTriggerHelper {
+public with sharing class OSF_PersonAccountTriggerHelper {
     private static final String EXISTING_ACCOUNT_ERROR_STRING = 'Email is in use with the same brand, please use another email or brand.';
     private static final String BRAND_REQUIRED_ERROR_STRING = 'Brand is required.';
     private static final String EMAIL_REQUIRED_ERROR_STRING = 'Email is required.';
@@ -64,6 +64,7 @@ public without sharing class OSF_PersonAccountTriggerHelper {
     }
 
     public void checkForDuplicatePersonAccounts(Map<String, List<Account>> personAccountMap, List<Master_Account__c> masterAccounts) {
+        List<Account> ordersToUpdateAccounts = new List<Account>();
         
         for (Master_Account__c mAcc : masterAccounts) {
             for (Account acc : personAccountMap.get(mAcc.Email__c)) {
@@ -76,12 +77,16 @@ public without sharing class OSF_PersonAccountTriggerHelper {
 
                     //update the ones that aren't a duplicate.
                     acc.Master_Account__c = mAcc.Id;
+                    ordersToUpdateAccounts.add(acc);
                 }
             }
         }
+
+        updateOrders(ordersToUpdateAccounts);
     }
 
     public void createMasterAccounts(Map<String, List<Account>> personAccountMap) {
+        List<Account> ordersToUpdateAccounts = new List<Account>();
 
         List<Master_Account__c> masterAccountList = new List<Master_Account__c>();
         //create a new master account for each person email.
@@ -102,8 +107,11 @@ public without sharing class OSF_PersonAccountTriggerHelper {
         for (Master_Account__c mAcc : masterAccountList) {
             for (Account pAcc : personAccountMap.get(mAcc.Email__c)) {
                 pAcc.Master_Account__c = mAcc.Id;
+                ordersToUpdateAccounts.add(pAcc);
             }
         }
+
+            updateOrders(ordersToUpdateAccounts);
     }
 
     public Map<String, Map<String, List<Account>>> filterPersonAccountsByMasterAccounts(Map<String, List<Account>> personAccountsMap,
@@ -165,6 +173,30 @@ public without sharing class OSF_PersonAccountTriggerHelper {
             }
 
             delete masterAccountsToDelete;
+        } catch (Exception e) {
+            System.debug('Error ---> ' + e.getMessage());
+        }
+    }
+
+    public void updateOrders(List<Account> ordersToUpdateAccounts) {
+        List<Id> accIds = new List<Id>();
+        for (Account acc : ordersToUpdateAccounts) {
+            accIds.add(acc.Id);
+        }
+
+        try {
+            List<Order> orders = new List<Order>();
+            orders = [SELECT Id, Master_Account__c, AccountId FROM Order WHERE AccountId IN :accIds];
+
+            for (Order order : orders) {
+                for (Account acc : ordersToUpdateAccounts) {
+                    if (order.AccountId == acc.Id) {
+                        order.Master_Account__c = acc.Master_Account__c;
+                    }
+                }
+            }
+
+            update orders;
         } catch (Exception e) {
             System.debug('Error ---> ' + e.getMessage());
         }
